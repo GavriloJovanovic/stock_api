@@ -10,6 +10,9 @@ COPY . .
 # Install dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+# Preload database with CSV data
+RUN python loader.py
+
 # Expose port for Flask
 EXPOSE 5000
 
