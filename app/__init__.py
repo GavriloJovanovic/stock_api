@@ -1,3 +1,5 @@
+# app/__init__.py
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -23,3 +25,4 @@ def create_app():
     app.register_blueprint(stock_bp, url_prefix="/")
 
     return app
+
