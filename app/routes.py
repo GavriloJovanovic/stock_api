@@ -121,6 +121,35 @@ def calculate_profit():
             }
         }
 
+        # Logic that adds another company that can be more profitable
+
+        # Get user's selected profit
+        user_profit = result["selected"]["total_profit"]
+        more_profitable = []
+
+        # Fetch all stocks from the database
+        all_stocks = Stock.query.all()
+
+        for s in all_stocks:
+            if s.symbol == symbol:
+                continue  # Skip the one already being analyzed
+
+            try:
+                # Use the existing static method from StockLogic
+                df_alt = StockLogic.load_stock_data(s.symbol)
+                alt_profit = StockLogic.get_total_profit(df_alt, start_date, end_date)
+
+                if alt_profit > user_profit:
+                    more_profitable.append(s.symbol)
+            except Exception as e:
+                continue  # Skip stock if there's an error loading data
+
+        # Add the optional info to the response
+        result["more_profitable_stocks"] = more_profitable
+
+
+
+
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
