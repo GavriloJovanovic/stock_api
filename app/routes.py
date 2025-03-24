@@ -147,9 +147,6 @@ def calculate_profit():
         # Add the optional info to the response
         result["more_profitable_stocks"] = more_profitable
 
-
-
-
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500

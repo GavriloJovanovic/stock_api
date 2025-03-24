@@ -78,7 +78,7 @@ Update stock details.
 Delete a stock.
 
 ### 5. `POST /stocks/profit`
-Returns most profitable buy/sell dates and total profit for a stock.
+Returns most profitable buy/sell dates and total profit for a stock. Additionally it returns company that are more profitable in that time period.
 
 #### Request body:
 
@@ -96,7 +96,8 @@ Returns most profitable buy/sell dates and total profit for a stock.
 {
   "previous": {  },
   "selected": {  },
-  "next": {  }
+  "next": {  },
+  "more_profitable_stocks": [ ]
 }
 ```
 
